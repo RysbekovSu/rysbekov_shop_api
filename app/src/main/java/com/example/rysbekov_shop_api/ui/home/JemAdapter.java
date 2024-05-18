@@ -41,7 +41,6 @@ public class JemAdapter extends RecyclerView.Adapter<JemAdapter.ViewHolder> {
         return selected_intoBacketList;
     }
 
-
     @NonNull
     @Override
     public JemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -83,15 +82,22 @@ public class JemAdapter extends RecyclerView.Adapter<JemAdapter.ViewHolder> {
                 selected_list.add(modelM);
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("favorite", selected_list);
+
                 navController = Navigation.findNavController((Activity) itemView.getContext(), R.id.nav_host_fragment_activity_main);
                 navController.navigate(R.id.descriptionFragment, bundle);
                 Log.e("TAG", "pass data to description!");
             });
 
+
+
+
+
             itemView.setOnClickListener(v1 -> {
                 if (itemProductBinding.tovarFavoriteCheck.getVisibility()==View.INVISIBLE){
                     itemProductBinding.tovarFavoriteCheck.setVisibility(View.VISIBLE);
                     selected_intoBacketList.add(modelM);
+
+
                 }else {
                     itemProductBinding.tovarFavoriteCheck.setVisibility(View.INVISIBLE);
                     selected_intoBacketList.remove(modelM);

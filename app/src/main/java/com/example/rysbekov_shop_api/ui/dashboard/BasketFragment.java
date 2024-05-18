@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,15 +34,14 @@ public class BasketFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
 
         binding = FragmentBasketBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         if(getArguments() != null){
             basketProducts = new ArrayList<>();
-            basketProducts = getArguments().getParcelableArrayList("basket'skey");
+            basketProducts = getArguments().getParcelableArrayList("basket");
+
         }
         if(basketProducts != null){
             binding.placeHolder.setVisibility(View.GONE);
@@ -66,6 +66,9 @@ public class BasketFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        adapter = new JemAdapter(requireActivity(), basketProducts);
+//        binding.rvBasket.setAdapter(adapter);
+
 
         binding.btnBack.setOnClickListener(v -> {
             navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
